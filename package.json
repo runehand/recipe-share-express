@@ -1,0 +1,18 @@
+{
+  "name": "recipe-share-express",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "db:seed": "node scripts/seed-mongodb.mjs"
+  },
+  "dependencies": {
+    "cloudinary": "^2.10.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "mongodb": "^7.0.0",
+    "multer": "^2.0.1"
+  }
+}
