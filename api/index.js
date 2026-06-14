@@ -7,10 +7,15 @@ import multer from 'multer';
 
 const databaseName = 'recipe-share';
 const collectionName = 'recipes';
-const allowedOrigins = (process.env.FRONTEND_ORIGIN || '')
+const defaultAllowedOrigins = [
+  'http://localhost:5173',
+  'https://recipe-share-react.vercel.app'
+];
+const allowedOrigins = [...defaultAllowedOrigins, ...(process.env.FRONTEND_ORIGIN || '')
   .split(',')
   .map((origin) => origin.trim())
-  .filter(Boolean);
+  .filter(Boolean)]
+  .map((origin) => origin.replace(/\/$/, ''));
 
 const app = express();
 const upload = multer({
@@ -42,7 +47,9 @@ if (hasCloudinaryConfig && !process.env.CLOUDINARY_URL) {
 let mongoClientPromise;
 
 function getCorsOrigin(origin, callback) {
-  if (!origin || allowedOrigins.length === 0 || allowedOrigins.includes(origin)) {
+  const normalizedOrigin = origin?.replace(/\/$/, '');
+
+  if (!origin || allowedOrigins.includes(normalizedOrigin)) {
     callback(null, true);
     return;
   }
