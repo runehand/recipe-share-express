@@ -18,10 +18,12 @@ Set these variables locally and in Vercel:
 ```bash
 MONGODB_URI=your_mongodb_connection_string
 FRONTEND_ORIGIN=http://localhost:5173,https://your-react-app.vercel.app
-CLOUDINARY_URL=your_cloudinary_url
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
 ```
 
-`CLOUDINARY_URL` can be replaced by `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, and `CLOUDINARY_API_SECRET`.
+You can also use `CLOUDINARY_URL` instead of the three separate Cloudinary variables.
 
 For Vercel, add these in Project Settings > Environment Variables. Set `FRONTEND_ORIGIN` to your deployed React app URL after it is available.
 
